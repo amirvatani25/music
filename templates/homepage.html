@@ -1,0 +1,334 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block contain %}
+
+
+
+    <div class="slider">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-6 col-pad">
+                    <a href="">
+                        <img src="{% static 'img/Inspiring-music-1.jpg' %}" alt="" srcset="">
+                        <span class="comment"><i class="fa fa-star "></i>پیشنهاد ویژه</span>
+                        <span class="name-album"><i class="fa fa-compact-disc"></i>{{ album.singer}}</span>
+                        <span class="date-album"><i class="fa fa-calendar"></i>29/10/1390</span>
+                        <span class="number-album"><i class="fa fa-music"></i>29 ترک</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-6 col-pad">
+                    <a href="">
+                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
+                        <span class="comment"><i class="fa fa-star "></i>پیشنهاد ویژه</span>
+                        <span class="name-album"><i class="fa fa-compact-disc"></i>آلبوم شیرین</span>
+                        <span class="date-album"><i class="fa fa-calendar"></i>29/10/1390</span>
+                        <span class="number-album"><i class="fa fa-music"></i>29 ترک</span>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4 col-pad">
+                    <a href="">
+                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
+                        <span class="comment"><i class="fa fa-star "></i>پیشنهاد ویژه</span>
+                        <span class="name-album"><i class="fa fa-compact-disc"></i>آلبوم شیرین</span>
+                        <span class="date-album"><i class="fa fa-calendar"></i>29/10/1390</span>
+                        <span class="number-album"><i class="fa fa-music"></i>29 ترک</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-pad">
+                    <a href="">
+                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
+                        <span class="comment"><i class="fa fa-star "></i>پیشنهاد ویژه</span>
+                        <span class="name-album"><i class="fa fa-compact-disc"></i>آلبوم شیرین</span>
+                        <span class="date-album"><i class="fa fa-calendar"></i>29/10/1390</span>
+                        <span class="number-album"><i class="fa fa-music"></i>29 ترک</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-pad">
+                    <a href="">
+                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
+                        <span class="comment"><i class="fa fa-star "></i>پیشنهاد ویژه</span>
+                        <span class="name-album"><i class="fa fa-compact-disc"></i>آلبوم شیرین</span>
+                        <span class="date-album"><i class="fa fa-calendar"></i>29/10/1390</span>
+                        <span class="number-album"><i class="fa fa-music"></i>29 ترک</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container-fluid">
+            <div class="boxes">
+                <div class="title">
+                    <h2>
+                        حس و حال
+                    </h2>
+
+                    <a href="" class="btn-custom1">مشاهده بیشتر</a>
+                </div>
+                <div class="owl-carousel alm-carousel">
+                    {% for hesohal in hesohals %}
+                    <a href="{% url 'single-hesohal' hesohal.id %}" class="box-mus">
+                        <img src="{{ hesohal.hesohal_image.url }}" alt="" srcset="">
+                        <h3><i class="fa fa-compact-disc"></i> {{ hesohal.name }}</h3>
+                        <span><i class="fa fa-music"></i> 29 ترک</span>
+
+                    </a>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div class="title">
+                <h2>
+                    تک آهنگ
+                </h2>
+
+                <a href="" class="btn-custom1">مشاهده بیشتر</a>
+            </div>
+
+            <div class="single-trrack">
+                <div class="row">
+                    {% for song in songs %}
+                        {% if song.album_id == NULL %}
+
+
+                    <div class="col-6 col-md-4 col-lg-2 mb-5">
+                        <div class="box-single-track">
+                            <a href=""><img src="{{ song.image.url }}" alt="" srcset=""></a>
+                            <span class="comment">{{ song.total_vote }}<i class="fa fa-comment-alt"></i></span>
+                            <span class="like">{{ song.vote_ratio }}<i class="fa fa-thumbs-up"></i></span>
+                            <div class="box-alltrack">
+                                <a href="" class="cate1">{{ song.name }}</a>
+                                <span class="time">29/10/1399</span>
+                                <div class="categoryes">
+                                    {% for tag in song.tags.all %}
+                                    <a href="" class="cate">{{ tag }}</a><span class="dottes"></span>
+                                {% endfor %}
+                                </div>
+                                <a href="" class="cate3">{{ song.singer }}</a>
+                            </div>
+
+                        </div>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            <div class="boxes">
+                <div class="title">
+                    <h2>
+                        خواننده های پیشنهادی
+                    </h2>
+
+                    <a href="{% url 'singers' %}" class="btn-custom1">مشاهده همه خوانندها</a>
+                </div>
+
+
+                <div class="owl-carousel alm-carousel">
+                    {% for singer in singers %}
+                    {% if singer.pishmahadi == True %}
+                    <div class="box-mus">
+                        <a href=""><img src="{{ singer.singer_image.url }}" alt="" srcset="">
+                            <h3>{{ singer.name }}</h3>
+                        </a>
+                    </div>
+                        {% endif %}
+                {% endfor %}
+
+                </div>
+
+            </div>
+
+            <div class="boxes">
+                <div class="title">
+                    <h2>
+                        موسیقی آرامش بخش
+                    </h2>
+
+                    <a href="" class="btn-custom1">مشاهده بیشتر</a>
+                </div>
+                <div class="owl-carousel alm-carousel">
+                    {% for album in albums %}
+                    <a href="" class="box-mus">
+                        <img src="{{ album.image.url }}" alt="" srcset="">
+                        <h3><i class="fa fa-compact-disc"></i> {{ album.name }}</h3>
+                        <span><i class="fa fa-music"></i>
+
+                      {{ num_post }}
+
+                        </span>
+
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+
+            <div class="boxes">
+                <div class="title">
+                    <h2>
+                        دسته بندی ها
+                    </h2>
+                    <a href="" class="btn-custom1">مشاهده بیشتر</a>
+                </div>
+
+                <div class="owl-carousel category-carousel">
+                    {% for category in categorys %}
+                    <a href="" class="category-box">
+                        <img src="{{ category.category_image.url }}" alt="" srcset="">
+                        <h3></h3>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+
+         <div class="boxes">
+                <div class="title">
+                    <h2>
+                        دسته بندی ها
+                    </h2>
+
+                    <a href="" class="btn-custom1">مشاهده بیشتر</a>
+                </div>
+                <div class="owl-carousel category-carousel">
+                    <a href="" class="category-box">
+                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
+                        <h3>انرژی</h3>
+                    </a>
+                    <a href="" class="category-box">
+                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
+                        <h3>انرژی</h3>
+                    </a>
+                    <a href="" class="category-box">
+                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
+                        <h3>انرژی</h3>
+                    </a>
+                    <a href="" class="category-box">
+                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
+                        <h3>انرژی</h3>
+                    </a>
+                    <a href="" class="category-box">
+                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
+                        <h3>انرژی</h3>
+                    </a>
+                    <a href="" class="category-box">
+                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
+                        <h3>انرژی</h3>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="bakhsh-payani">
+                <div class="row">
+                    <div class="col-4 ">
+                        <p>هنرمندان</p>
+                    </div>
+                    <div class="col-4">
+                        <p>ژانرها</p>
+                    </div>
+                    <div class="col-4">
+                        <p>سازها</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="shabake-ejtmaei col-md-2">
+                    <div class="img">
+                        <a href=""><img src="{% static 'img/logo.png' %}i" alt=""></a>
+                    </div>
+                    <div class="shabake-ejtmaei">
+                        <div class="ejtemaei">
+                            <a href=""> <i class="fab fa-facebook-f"></i></a>
+                            <a href=""> <i class="fab fa-telegram"></i></a>
+                            <a href=""> <i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-item col-6 col-sm-4 col-md-2">
+                    <p>فهرست اصلی</p>
+                    <ul>
+                        <li><a href="">صفحه اصلی</a></li>
+                        <li>
+                            <a href="">درباره</a></li>
+                        <li>
+                            <a href="">تک آهنگ</a></li>
+                        <li>
+                            <a href="">پلی لیست</a></li>
+                        <li>
+                            <a href="">دیسکوگرافی</a></li>
+                    </ul>
+                </div>
+                <div class="footer-item col-6 col-sm-4 col-md-2">
+                    <p>فهرست اصلی</p>
+                    <ul>
+                        <li><a href="">صفحه اصلی</a></li>
+                        <li>
+                            <a href="">آلبوم</a></li>
+                        <li>
+                            <a href="">تک آهنگ</a></li>
+                        <li>
+                            <a href="">پلی لیست</a></li>
+                        <li>
+                            <a href="">دیسکوگرافی</a></li>
+                    </ul>
+                </div>
+                <div class="footer-item col-6 col-sm-4 col-md-2">
+                    <p>فهرست اصلی</p>
+                    <ul>
+                        <li><a href="">صفحه اصلی</a></li>
+                        <li>
+                            <a href="">آلبوم</a></li>
+                        <li>
+                            <a href="">تک آهنگ</a></li>
+                        <li>
+                            <a href="">پلی لیست</a></li>
+                        <li>
+                            <a href="">دیسکوگرافی</a></li>
+                    </ul>
+                </div>
+                <div class="footer-item col-6 col-sm-4 col-md-2">
+                    <p>فهرست اصلی</p>
+                    <ul>
+                        <li><a href="">صفحه اصلی</a></li>
+                        <li>
+                            <a href="">آلبوم</a></li>
+                        <li>
+                            <a href="">تک آهنگ</a></li>
+                        <li>
+                            <a href="">پلی لیست</a></li>
+                        <li>
+                            <a href="">دیسکوگرافی</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="end">
+        <p>© 1400 استفاده از مطالب سایت تنها با درج لینک مستقیم به آن مطلب مجاز است.</p>
+    </div>
+
+
+
+
+{% endblock contain %}

@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+
+
+{% block contain %}
+
+
+    <div class="form-site-back">
+        <div class="register">
+            <h1>ویرایش</h1>
+
+
+         <div class="profile">
+            <form action="{%  url 'edit-account' %}" method="post" enctype="multipart/form-data">
+
+
+                {% csrf_token %}
+                {% for field in  form %}
+                    {{ field }}
+
+                {% endfor %}
+
+                <button type="submit">ذخیره</button>
+
+
+
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock contain %}

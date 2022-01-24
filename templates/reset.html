@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+
+{% block contain %}
+
+
+
+    <div class="form-site-back">
+        <div class="reset-password">
+            <h3>کلمه عبور جدید</h3>
+            <div class="e-mail">
+                <form class="form" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn-custom1">ارسال</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+{% endblock contain %}

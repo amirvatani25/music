@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block contain %}
+
+
+
+
+    <div class="box">
+
+        <div class="container">
+            <div class="row">
+                        <div class="box-main">
+                               <!-- <h4>پنل کاربری</h4>-->
+                            <!-- partial:index.partial.html -->
+                                  <div class="profile">
+                                    <img src="{{ profile.profile_image.url }}">
+                                    <div class="overlay">
+                                        <input type="file">
+                                        <p>Upload Picture</p>
+                                    </div>
+                                  </div>
+                                <a href="{% url 'edit-account' %}" class="edite-prof btn-custom1">ویرایش پنل کاربری</a>
+                            <!--<p>آثار خریداری شده(آلبوم و قطعات)</p>-->
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">نام کاربری</th>
+                            <th scope="col">{{ profile.username }}</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">ایمیل</th>
+                            <td>{{ profile.email }}</td>
+
+                          <tr>
+                            <th scope="row">نوع اشتراک</th>
+                            <td>!!!اشتراکی ندارید</td>
+
+                          </tr>
+                          <tr>
+                            <th scope="row">تاریخ عضویت</th>
+                            <td colspan="2">{{ profile.create }}</td>
+
+                          </tr>
+                          <tr>
+                            <th scope="row">تاریخ شروع اشتراک</th>
+                            <td colspan="2">!!!اشتراکی ندارید</td>
+
+                          <tr>
+                            <th scope="row">تاریخ انقضاء اشتراک</th>
+                            <td colspan="2">!!!اشتراکی ندارید</td>
+
+                          </tr>
+
+                        </tbody>
+                      </table>
+
+                            </div>
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+
+{% endblock contain %}
