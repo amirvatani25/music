@@ -9,53 +9,20 @@
     <div class="slider">
         <div class="container">
             <div class="row">
+                {% for album in albums %}
+                {% if album.pishnahadi_homepage == 1 %}
                 <div class="col-12 col-md-6 col-lg-6 col-pad">
                     <a href="">
-                        <img src="{% static 'img/Inspiring-music-1.jpg' %}" alt="" srcset="">
+                        <img src="{{ album.image.url }}" alt="" srcset="">
                         <span class="comment"><i class="fa fa-star "></i>پیشنهاد ویژه</span>
                         <span class="name-album"><i class="fa fa-compact-disc"></i>{{ album.singer}}</span>
-                        <span class="date-album"><i class="fa fa-calendar"></i>29/10/1390</span>
-                        <span class="number-album"><i class="fa fa-music"></i>29 ترک</span>
+                        <span class="date-album"><i class="fa fa-calendar"></i>تاریخ تشکیل البوم تو مدل بخورد***</span>
+                        <span class="number-album"><i class="fa fa-music"></i>29 ترک(استاتیک)</span>
                     </a>
                 </div>
-                <div class="col-12 col-md-6 col-lg-6 col-pad">
-                    <a href="">
-                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
-                        <span class="comment"><i class="fa fa-star "></i>پیشنهاد ویژه</span>
-                        <span class="name-album"><i class="fa fa-compact-disc"></i>آلبوم شیرین</span>
-                        <span class="date-album"><i class="fa fa-calendar"></i>29/10/1390</span>
-                        <span class="number-album"><i class="fa fa-music"></i>29 ترک</span>
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-4 col-pad">
-                    <a href="">
-                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
-                        <span class="comment"><i class="fa fa-star "></i>پیشنهاد ویژه</span>
-                        <span class="name-album"><i class="fa fa-compact-disc"></i>آلبوم شیرین</span>
-                        <span class="date-album"><i class="fa fa-calendar"></i>29/10/1390</span>
-                        <span class="number-album"><i class="fa fa-music"></i>29 ترک</span>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 col-pad">
-                    <a href="">
-                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
-                        <span class="comment"><i class="fa fa-star "></i>پیشنهاد ویژه</span>
-                        <span class="name-album"><i class="fa fa-compact-disc"></i>آلبوم شیرین</span>
-                        <span class="date-album"><i class="fa fa-calendar"></i>29/10/1390</span>
-                        <span class="number-album"><i class="fa fa-music"></i>29 ترک</span>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 col-pad">
-                    <a href="">
-                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
-                        <span class="comment"><i class="fa fa-star "></i>پیشنهاد ویژه</span>
-                        <span class="name-album"><i class="fa fa-compact-disc"></i>آلبوم شیرین</span>
-                        <span class="date-album"><i class="fa fa-calendar"></i>29/10/1390</span>
-                        <span class="number-album"><i class="fa fa-music"></i>29 ترک</span>
-                    </a>
-                </div>
+                {% endif %}
+            {% endfor %}
+
             </div>
         </div>
     </div>
@@ -98,7 +65,7 @@
 
                     <div class="col-6 col-md-4 col-lg-2 mb-5">
                         <div class="box-single-track">
-                            <a href=""><img src="{{ song.image.url }}" alt="" srcset=""></a>
+                            <a href="{% url 'single-track' song.id  %}"><img src="{{ song.image.url }}" alt="" srcset=""></a>
                             <span class="comment">{{ song.total_vote }}<i class="fa fa-comment-alt"></i></span>
                             <span class="like">{{ song.vote_ratio }}<i class="fa fa-thumbs-up"></i></span>
                             <div class="box-alltrack">
@@ -132,9 +99,9 @@
 
                 <div class="owl-carousel alm-carousel">
                     {% for singer in singers %}
-                    {% if singer.pishmahadi == True %}
+                    {% if singer.pishnahadi_homepage == True %}
                     <div class="box-mus">
-                        <a href=""><img src="{{ singer.singer_image.url }}" alt="" srcset="">
+                        <a href="{% url 'singer' singer.id %}"><img src="{{ singer.singer_image.url }}" alt="" srcset="">
                             <h3>{{ singer.name }}</h3>
                         </a>
                     </div>
@@ -148,14 +115,14 @@
             <div class="boxes">
                 <div class="title">
                     <h2>
-                        موسیقی آرامش بخش
+                        آلبوم ها
                     </h2>
 
                     <a href="" class="btn-custom1">مشاهده بیشتر</a>
                 </div>
                 <div class="owl-carousel alm-carousel">
                     {% for album in albums %}
-                    <a href="" class="box-mus">
+                    <a href="{% url 'single-album' album.id %}" class="box-mus">
                         <img src="{{ album.image.url }}" alt="" srcset="">
                         <h3><i class="fa fa-compact-disc"></i> {{ album.name }}</h3>
                         <span><i class="fa fa-music"></i>

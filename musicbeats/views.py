@@ -22,7 +22,9 @@ def singers(request):
 
 def singer(request,pk):
     singerObj = Singer.objects.get(id=pk)
-    context={'singer':singerObj}
+    songs = Song.objects.all()
+    context={'singer':singerObj,
+             'songs':songs,}
     return render(request,'musicbeats/single-singer.html',context)
 def play(request,pk):
     songObj=Song.objects.get(id=pk)
@@ -46,3 +48,29 @@ def single_hesohal(request,pk):
     return render(request,'musicbeats/single-hesohal.html',context)
 
 
+def singeTrack(request,pk):
+    songObj= Song.objects.get(id=pk)
+    singers = Singer.objects.all()
+    albums= Album.objects.all()
+
+    context = {
+        'song':songObj,
+        'singers':singers,
+        'albums':albums,
+    }
+
+    return render(request,'musicbeats/single-tak-music.html',context)
+
+def singleAlbum(request,pk):
+    albumObj= Album.objects.get(id=pk)
+    singers = Singer.objects.all()
+    albums= Album.objects.all()
+    songs = Song.objects.all()
+
+    context = {
+        'album':albumObj,
+        'singers':singers,
+        'albums':albums,
+        'songs':songs,
+    }
+    return render(request,'musicbeats/single-album.html',context)

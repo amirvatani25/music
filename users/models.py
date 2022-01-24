@@ -13,6 +13,7 @@ class Profile(models.Model):
     username = models.CharField(max_length=200, blank=True , null=True)
     email = models.EmailField(max_length=500,blank=True,null=True)
     profile_image = models.ImageField(null=True,blank=True,upload_to='profile/',default="profiles/user-defualt.png")
+    vip = models.BooleanField(default=False)
     create = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4,primary_key=True,unique=True,
                           editable=False)

@@ -16,9 +16,8 @@
                 <div class="row">
 
 
-                    {% for song in songs %}
-                        {% if song.hesohal == hesohal.name %}
 
+                            {% for song in hesohal.song.all %}
 
 
 
@@ -34,9 +33,9 @@
                         </div>
                     </div>
 
-                        {% endif %}
+                            {% endfor %}
 
-                    {% endfor %}
+
 
                 </div>
             </div>
