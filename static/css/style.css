@@ -1786,3 +1786,246 @@ single tak-music css
 #player-controls .button:hover i {
     color: #fff;
 }
+
+
+/*
+panel-user css
+*/
+
+.panel-user {
+    margin-top: 150px;
+}
+
+.panel-user .user-info {
+    color: white;
+}
+
+.panel-user .user-info {
+    background: rgb(19, 19, 19);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.panel-user .user-info img {
+    margin-left: 15px;
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+}
+
+.panel-user .user-info .user-des {
+    display: flex;
+}
+
+.panel-user .user-info .user-des h6 {
+    margin-top: 15px;
+}
+
+.panel-user .panel-u {
+    width: 100%;
+    height: auto;
+    background: #000000a1;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 20px #ffffff1a;
+}
+
+.panel-user .panel-des {
+    width: 100%;
+    height: auto;
+    background: #000000a1;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 20px #ffffff1a;
+}
+
+.panel-user .panel-u hr {
+    border: 1px dashed #484848;
+}
+
+.panel-user .user-info a {
+    width: 46.7%;
+    display: inline-block;
+    text-align: center;
+    color: white;
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+.panel-user .user-info a:hover i {
+    color: #e4c150;
+    transition: 0.5s;
+}
+
+.panel-user .user-info a:hover {
+    color: #e4c150;
+    transition: 0.5s;
+}
+
+.panel-user .user-info a i {
+    display: block;
+    color: #c72f46;
+    margin-bottom: 10px;
+    transition: 0.5s;
+}
+
+.panel-user .user-info .dasherd {
+    content: "";
+    border: 1px dashed #484848;
+}
+
+.panel-user .panel-u ul {
+    list-style: none;
+    margin-top: 20px;
+    padding-right: 0;
+}
+
+.panel-user .panel-u ul li a {
+    color: white;
+    padding: 15px 0;
+    display: block;
+    padding-right: 30px;
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+.active .active {
+    background: #c72f46;
+    transition: 0.5s;
+    border-radius: 4px;
+}
+
+.panel-user .user-data .title {
+    padding-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e4c150;
+}
+
+.panel-user .user-data h5 {
+    display: inline-block;
+    color: white;
+}
+
+.panel-user .user-data a {
+    float: left;
+    color: #c72f46;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.panel-user .user-data a i {
+    margin-left: 6px;
+    position: relative;
+    top: 2px;
+    color: #c72f46;
+}
+
+.panel-user .user-data .data {
+    color: white;
+    padding: 20px;
+    background: rgb(27, 27, 27);
+    margin: 0;
+}
+
+.panel-user .user-data .data p {
+    border-bottom: 1px dashed #32383e;
+    margin: 0;
+    padding: 15px 0;
+}
+
+.panel-user .user-data .data>div {
+    border-left: 1px dashed #32383e;
+}
+
+.panel-user .user-data .data>div:last-child {
+    border-left: none;
+}
+
+.panel-user .user-data .data p:last-child {
+    border-bottom: none;
+}
+
+.panel-user .b-l1 {
+    border-left: 1px solid #32383e;
+}
+
+.panel-user .playlist-recent .title {
+    padding-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e4c150;
+}
+
+.panel-user .playlist-recent {
+    margin-top: 80px;
+}
+
+.panel-user .playlist-recent .title h5 {
+    display: inline-block;
+    color: white;
+}
+
+.panel-user .playlist-recent .title a {
+    float: left;
+    color: #c72f46;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.panel-user .playlist-recent .title a i {
+    margin-left: 6px;
+    position: relative;
+    top: 2px;
+    color: #c72f46;
+}
+
+.panel-user .playlist-recent ul {
+    padding: 0;
+    text-align: center;
+}
+
+.panel-user .playlist-recent ul li p {
+    color: white;
+}
+
+.panel-user .playlist-recent ul li span {
+    display: inline-block;
+}
+
+.panel-user .playlist-recent ul li:nth-child(odd) {
+    background-color: #1b1b1b;
+    list-style: none;
+    padding: 15px;
+    color: white;
+}
+
+.panel-user .playlist-recent ul li:nth-child(even) {
+    background-color: #2e2e2e;
+    padding: 15px;
+    list-style: none;
+    color: white;
+}
+
+.panel-user .playlist-recent ul li p {
+    float: right;
+}
+
+.panel-user .playlist-recent ul li a:last-child {
+    float: left!important;
+    font-size: 14px;
+    color: white;
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1470px) {
+    .panel-user .user-des {
+        display: block!important;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 993px) {
+    .panel-user .panel-u {
+        margin-bottom: 55px;
+    }
+}

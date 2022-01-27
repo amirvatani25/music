@@ -8,6 +8,7 @@ from django.contrib.auth import login , authenticate , logout
 from django.contrib import messages
 from django.db.models import Q
 from .forms import customUserCreationForm,profileForm
+from musicbeats.forms import playlistForm
 from  django.http import  HttpResponse , HttpResponseRedirect
 
 
@@ -91,7 +92,17 @@ def userProfile(request , pk):
 @login_required(login_url='login')
 def userAccount(request):
     profile= request.user.profile
-    context = {'profile':profile}
+    form = profileForm
+
+    if request.method == 'POST':
+        form = playlistForm(request.POST)
+        if form.is_valid():
+            plalist = form.save(commit=False)
+            plalist.owner = profile
+            plalist.save()
+            return redirect('account')
+    form = playlistForm
+    context = {'profile':profile,'form':form}
     return render(request,'users/account.html',context)
 
 @login_required(login_url='login')

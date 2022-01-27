@@ -5,70 +5,84 @@
 
 
 
-    <div class="box">
-
-        <div class="container">
+    <div class="panel-user">
+        <div class="container-fluid">
             <div class="row">
-                        <div class="box-main">
-                               <!-- <h4>پنل کاربری</h4>-->
-                            <!-- partial:index.partial.html -->
-                                  <div class="profile">
-                                    <img src="{{ profile.profile_image.url }}">
-                                    <div class="overlay">
-                                        <input type="file">
-                                        <p>Upload Picture</p>
-                                    </div>
-                                  </div>
-                                <a href="{% url 'edit-account' %}" class="edite-prof btn-custom1">ویرایش پنل کاربری</a>
-                            <!--<p>آثار خریداری شده(آلبوم و قطعات)</p>-->
-                    <table class="table table-bordered">
-                        <thead>
-                          <tr>
-                            <th scope="col">نام کاربری</th>
-                            <th scope="col">{{ profile.username }}</th>
-
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">ایمیل</th>
-                            <td>{{ profile.email }}</td>
-
-                          <tr>
-                            <th scope="row">نوع اشتراک</th>
-                            <td>!!!اشتراکی ندارید</td>
-
-                          </tr>
-                          <tr>
-                            <th scope="row">تاریخ عضویت</th>
-                            <td colspan="2">{{ profile.create }}</td>
-
-                          </tr>
-                          <tr>
-                            <th scope="row">تاریخ شروع اشتراک</th>
-                            <td colspan="2">!!!اشتراکی ندارید</td>
-
-                          <tr>
-                            <th scope="row">تاریخ انقضاء اشتراک</th>
-                            <td colspan="2">!!!اشتراکی ندارید</td>
-
-                          </tr>
-
-                        </tbody>
-                      </table>
-
+                <div class="col-12 col-md-12 col-lg-4 col-xl-3">
+                    <div class="panel-u">
+                        <div class="user-info">
+                            <div class="user-des">
+                                <img src="{{ profile.profile_image.url }}" alt="">
+                                <div>
+                                    <span>{{ profile.name }} {{ profile.familyName }}</span>
+                                </div>
                             </div>
+                            <hr>
+
+                            <a href="{% url 'reset_password' %}">
+                                <i class="fa fa-lock"></i> تغییر رمز
+                            </a>
+                            <span class="dasherd"></span>
+                            <a href="{% url 'logout' %}">
+                                <i class="fa fa-sign-out-alt"></i> خروج از حساب
+                            </a>
 
 
+                        </div>
 
-
-
-
+                        <ul>
+                            <li class="active"><a href="{% url 'account' %}">پروفایل من</a></li>
+                            <li><a href="panel - Copy.html">لیست علاقه مندی ها</a></li>
+                            <li><a href="3">پلی لیست من</a></li>
+                            <li><a href="4">خرید اشتراک</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-8 col-xl-9">
+                    <div class="panel-des">
+                        <div class="user-data">
+                            <div class="title">
+                                <h5>اطلاعات حساب کاربری</h5>
+                                <a href="{% url 'edit-account' %}"><i class="fa fa-edit"></i>ویرایش اطلاعات</a>
+                            </div>
+                            <div class="row data">
+                                <div class="col-lg-6">
+                                    <p>نام : <span>{{ profile.name }}</span></p>
+                                    <p>نام خانوادگی : <span>{{ profile.familyName }}</span></p>
+                                    <p>ایمیل : <span>{{ profile.email }}</span></p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>اشتراک : <span>1 ماهه</span></p>
+                                    <p>نام کاربری : <span>{{ profile.username }}</span></p>
+                                    <p>تاریخ عضویت : <span>{{ profile.create }}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playlist-recent">
+                            <div class="title">
+                                <h5>پلی لیست های اخیر</h5>
+                                <a href=""><i class="fa fa-list"></i>مشاهده همه</a>
+                            </div>
+                            <ul>
+                                <li>
+                                    <p>پلی لیست 1</p><span>تاریخ</span><a href="">نمایش ترک ها</a></li>
+                                <li>
+                                    <p>پلی لیست 1</p><span>تاریخ</span><a href="">نمایش ترک ها</a></li>
+                                <li>
+                                    <p>پلی لیست 1</p><span>تاریخ</span><a href="">نمایش ترک ها</a></li>
+                                <li>
+                                    <p>پلی لیست 1</p><span>تاریخ</span><a href="">نمایش ترک ها</a></li>
+                                <li>
+                                    <p>پلی لیست 1</p><span>تاریخ</span><a href="">نمایش ترک ها</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
 
-    </div>
-    </div>
+
 
 {% endblock contain %}

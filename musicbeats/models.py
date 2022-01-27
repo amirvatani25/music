@@ -17,6 +17,10 @@ class Singer(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'خواننده'
+        verbose_name_plural = 'خواننده ها'
+
 
 class Album(models.Model):
     name = models.CharField(max_length=2000)
@@ -32,6 +36,10 @@ class Album(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name = 'آلبوم'
+        verbose_name_plural = 'آلبوم ها'
+
 
 
 
@@ -63,6 +71,12 @@ class Song(models.Model):
         ordering = ['total_vote']
 
 
+    class Meta:
+        verbose_name = 'آهنگ'
+        verbose_name_plural = 'آهنگ ها'
+
+
+
 
 class Review (models.Model):
     VOTE_TYPE = (
@@ -83,6 +97,12 @@ class Review (models.Model):
         return self.value
 
 
+    class Meta:
+        verbose_name = 'کامنت'
+        verbose_name_plural = 'کامنت ها'
+
+
+
 class Tag (models.Model):
     name = models.CharField(max_length=200)
     create = models.DateTimeField(auto_now_add=True)
@@ -90,6 +110,11 @@ class Tag (models.Model):
 
     def __str__(self):
         return  self.name
+
+    class Meta:
+        verbose_name = 'تگ'
+        verbose_name_plural = 'تگ ها'
+
 
 
 class Category (models.Model):
@@ -100,6 +125,11 @@ class Category (models.Model):
 
     def __str__(self):
         return  self.name
+
+    class Meta:
+        verbose_name = 'کتگوری'
+        verbose_name_plural = 'کتگوری ها'
+
 
 
 class Playlist(models.Model):
@@ -112,6 +142,11 @@ class Playlist(models.Model):
 
     def __str__(self):
         return self.list_name
+
+    class Meta:
+        verbose_name = 'پلی لیست'
+        verbose_name_plural = 'پلی لیست ها'
+
 
 
 class Hesohal(models.Model):
@@ -126,4 +161,9 @@ class Hesohal(models.Model):
 
     def __str__(self):
         return  self.name
+
+    class Meta:
+        verbose_name = 'حس و حال'
+        verbose_name_plural = 'حس و حال ها'
+
 

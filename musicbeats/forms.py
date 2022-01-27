@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Song , Review
+from .models import Song , Review , Playlist
 
 
 # <<!--class SongForm(ModelForm):
@@ -34,3 +34,15 @@ class reviewForm(ModelForm):
 
         self.fields['value'].widget.attrs.update({'class':'input'})
         self.fields['body'].widget.attrs.update({'class': 'input'})
+
+
+class playlistForm(ModelForm):
+    class Meta:
+        model = Playlist
+        fields = ['list_name']
+
+
+    def __init__(self , *args , **kwargs):
+        super(playlistForm, self).__init__(*args,**kwargs)
+
+        self.fields['list_name'].widget.attrs.update({'class':'input', 'placeholder':'نام ئلی لیست خود را وارد کنید'})

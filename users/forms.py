@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Profile
+
 from django.db import transaction
 
 
@@ -40,8 +41,6 @@ class profileForm(ModelForm):
         self.fields['email'].widget.attrs.update({'class': 'input', 'placeholder': 'ایمیل '})
         self.fields['username'].widget.attrs.update({'class': 'input disabled', 'placeholder': 'یوزرنیم '})
         self.fields['profile_image'].widget.attrs.update({'class': 'input','type':'file'})
-
-
 
 
 

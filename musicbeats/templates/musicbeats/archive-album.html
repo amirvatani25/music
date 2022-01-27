@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% block contain %}
+<body>
+
+
+
+    <div class="archive-singer">
+        <div class="container-fluid">
+            <div class="title">
+                <h1>آرشیو آلبوم</h1>
+                <span><span></span></span>
+            </div>
+            <div class="row">
+            {% for album in albums %}
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+
+                    <div class="box-singer">
+                        <a href="{% url 'single-album' album.id %}" class="image-singer">
+                            <img src="{{ album.image.url }}" alt="">
+                            <span>مشاهده آهنگ ها</span>
+                        </a>
+                        <a href="" class="name-singer">{{ album.name }}</a>
+                    </div>
+
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+
+    {% include 'pagination.html' with queryset=albums custom_range=custom_range %}
+
+{% endblock contain %}
