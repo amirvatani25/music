@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+
+{% block contain %}
+    <div class="archive-singer">
+        <div class="container-fluid">
+            <div class="title">
+                <h1>آرشیو تک آهنگ‌ها</h1>
+                <span><span></span></span>
+            </div>
+            <div class="row single-trrack">
+
+
+                {% for song in songs %}
+                    {% if song.album_id == NULL %}
+
+
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-5">
+                    <div class="box-single-track">
+                        <a href="{% url 'single-track' song.id %}"><img src="{{ song.image.url }}" alt="" srcset=""></a>
+                        <a href="" class="cate1">{{ song.name }}</a>
+                        <span class="time">{{ song.tarikh_enteshar }}</span>
+                        <a href="" class="cate">{% for tag in album.tags.all %}
+                            {{ tag }}
+                            {% endfor %}
+                            </a>
+                        <a href="" class="cate3">{{ song.singer }}</a>
+                        <span class="comment">{{ song.vote_ratio }}<i class="fa fa-comment-alt"></i></span>
+                        <span class="like">{{ song.total_vote }}<i class="fa fa-thumbs-up"></i></span>
+                    </div>
+                </div>
+                    {% endif %}
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+
+
+        {% include 'pagination.html' with queryset=songs custom_range=custom_range %}
+
+{% endblock contain %}

@@ -1,0 +1,61 @@
+  {% extends 'main.html' %}
+
+
+  {% block contain %}
+
+   <div class="archive-singer">
+        <div class="container-fluid">
+            <div class="title">
+                {% if searched %}
+                <h1>{{ searched }}</h1>
+                    {% else %}
+                    <h1>فراموش کردید سرچ کنید</h1>
+                {% endif %}
+                <span><span></span></span>
+            </div>
+            <div class="row single-trrack">
+
+                {% for song in songs %}
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-5">
+                    <div class="box-single-track">
+                        <a href="{% url 'single-track' song.id %}"><img src="{{ song.image.url}}" alt="" srcset=""></a>
+                        <a href="" class="cate1">{{ song.name }}</a>
+                        <span class="time">{{ song.tarikh_enteshar}}</span>
+                        <a href="" class="cate">
+                            {% for tag in song.tags.all %}
+                                {{ tag }}
+                                {% endfor %}
+                        </a>
+                        <a href="" class="cate3">{{ song.singer }}</a>
+                        <span class="comment">{{ song.total_vote }}<i class="fa fa-comment-alt"></i></span>
+                        <span class="like">{{ song.vote_ratio }}<i class="fa fa-thumbs-up"></i></span>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+                            {% for song in songs %}
+                                {% for singer in song.singer.all %}
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+
+                    <div class="box-singer">
+                        <a href="{% url 'singer' singer.id %}" class="image-singer">
+                            <img src="{{ singer.singer_image.url }}" alt="">
+                            <span>مشاهده آهنگ ها</span>
+                        </a>
+                        <a href="" class="name-singer">{{ singer.name }}</a>
+                    </div>
+
+                </div>
+                {% endfor %}
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+
+
+              {% include 'pagination.html' with queryset=songs custom_range=custom_range %}
+
+{% endblock contain %}

@@ -19,7 +19,79 @@
 
 <body>
 
-{% include 'navbar.html' %}
+
+<header>
+        <div class="container-fluid">
+            <div class="logo">
+                <a href="">
+                    <img src="{% static 'img/logo.png'%}" alt="" srcset="">
+                </a>
+            </div>
+
+            <div class="register-header">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'account' %}" class="send-adv">حساب کاربری</a>
+                <a href="{% url 'logout' %}" class="send-adv">خروج</a>
+                {% else %}
+                <a class="btn-custom1" href="{% url 'login' %}">ورود</a>
+                <a class="btn-custom1" href="{% url 'register' %}">ثبت نام</a>
+                {% endif %}
+            </div>
+
+            <div class="tools">
+                <div class="r-nav">
+
+                    <div class="drop-down">
+                        <div class="dots">
+                            <a href="#"> <i class="fa fa-ellipsis-h"></i></a>
+                        </div>
+
+                        <div class="drop-menu">
+                            <a href="#">
+                                <div class="z-span">
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                            <img src="{% static 'img/logo.png' %}" alt="">
+                            <ul>
+                                <li><a href="{% url 'albums' %}"><i class="fa fa-music"></i>آلبوم موسیقی</a></li>
+                                <li><a href="{% url 'singleTracks' %}"><i class="fa fa-music"></i>تک موسیقی</a></li>
+                                <li><a href=""><i class="fa fa-assistive-listening-systems"></i>پلی لیست</a></li>
+                                <li><a href="#"><i class="fa fa-compact-disc"></i>فول آلبوم ها</a></li>
+                                <li><a href="#"><i class="fa fa-list"></i>پلی لیست Best Of</a></li>
+                                <li><a href="#"><i class="fa fa-video"></i>موزیک ویدیو</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-overlay"></div>
+                    </div>
+
+                    <div class="search">
+                        <a href="#" class="search-icon"> <i class="fa fa-search"></i></a>
+                        <div class="search-form">
+                            <form action="{% url 'search-songs' %}" method="POST" class="form">
+                                {% csrf_token %}
+                                <input type="search" placeholder="عنوان..." name="searched" value="">
+                                <button type="submit" class="btn btn-outline-secondary">
+                                <i class="fa fa-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="{% url 'homepage' %}">صفحه اصلی</a></li>
+                    <li><a href="{% url 'albums' %}">آلبوم</a></li>
+                    <li><a href="{% url 'singleTracks' %}">تک آهنگ</a></li>
+                    <li><a href="">پلی لیست</a></li>
+                    <li><a href="">دیسکوگرافی</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
 
 {% block contain %}

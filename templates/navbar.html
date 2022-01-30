@@ -35,9 +35,9 @@
                             </a>
                             <img src="{% static 'img/logo.png' %}" alt="">
                             <ul>
-                                <li><a href="#"><i class="fa fa-music"></i>آلبوم موسیقی</a></li>
-                                <li><a href="#"><i class="fa fa-music"></i>تک موسیقی</a></li>
-                                <li><a href="#"><i class="fa fa-assistive-listening-systems"></i>پلی لیست</a></li>
+                                <li><a href="{% url 'albums' %}"><i class="fa fa-music"></i>آلبوم موسیقی</a></li>
+                                <li><a href="{% url 'singleTracks' %}"><i class="fa fa-music"></i>تک موسیقی</a></li>
+                                <li><a href=""><i class="fa fa-assistive-listening-systems"></i>پلی لیست</a></li>
                                 <li><a href="#"><i class="fa fa-compact-disc"></i>فول آلبوم ها</a></li>
                                 <li><a href="#"><i class="fa fa-list"></i>پلی لیست Best Of</a></li>
                                 <li><a href="#"><i class="fa fa-video"></i>موزیک ویدیو</a></li>
@@ -62,8 +62,8 @@
             <nav>
                 <ul>
                     <li><a href="{% url 'homepage' %}">صفحه اصلی</a></li>
-                    <li><a href="">آلبوم</a></li>
-                    <li><a href="">تک آهنگ</a></li>
+                    <li><a href="{% url 'albums' %}">آلبوم</a></li>
+                    <li><a href="{% url 'singleTracks' %}">تک آهنگ</a></li>
                     <li><a href="">پلی لیست</a></li>
                     <li><a href="">دیسکوگرافی</a></li>
                 </ul>

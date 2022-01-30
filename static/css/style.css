@@ -2029,3 +2029,41 @@ panel-user css
         margin-bottom: 55px;
     }
 }
+
+/*new-modal*/
+
+.single-takmusic .list-takmusic ul li p button {
+    margin-right: 70px;
+    color: #c72f46;
+    background: transparent;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+.single-takmusic .list-takmusic ul li p button:hover {
+    cursor: pointer;
+    color: #e4c150;
+    transition: 0.5s;
+}
+
+.modal-dialog button.close {
+    margin-left: 0;
+}
+
+.modal-dialog button.close span {
+    color: white;
+    opacity: 1!important;
+}
+
+button {
+    outline: 0!important;
+}
+
+.modal .modal-content {
+    background: #2c2c2c;
+    color: white;
+}
+
+
+/*end new-modal*/

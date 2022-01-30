@@ -29,6 +29,7 @@ class Album(models.Model):
     pishnahadi_single = models.BooleanField(blank=True,default=False)
     pishnahadi_homepage = models.BooleanField(blank=True, default=False)
     tags = models.ManyToManyField('Tag', blank=True)
+    tarikh_enteshar = models.CharField(max_length=20,blank=True,null=True)
     category = models.ManyToManyField('Category', blank=True)
     total_vote = models.IntegerField(default=0, null=True, blank=True)
     vote_ratio = models.IntegerField(default=0, null=True, blank=True)
@@ -53,6 +54,7 @@ class Song(models.Model):
     song320 = models.FileField(upload_to='musics/')
     songfacp = models.FileField(upload_to='musics/')
     album = models.ForeignKey(Album,null=True,blank=True,on_delete=models.SET_NULL)
+    tarikh_enteshar = models.CharField(max_length=20,blank=True,null=True)
     tags = models.ManyToManyField('Tag',blank=True)
     category = models.ManyToManyField('Category',blank=True)
     total_vote = models.IntegerField(default=0,null=True,blank=True)
@@ -149,13 +151,36 @@ class Playlist(models.Model):
 
 
 
+class AdminPlaylist(models.Model):
+    name = models.CharField(max_length=200,null=True,blank=True)
+    image=models.ImageField(upload_to='adminplaylists/',null=True,blank=True,default="profiles/user-defualt.png")
+    song = models.ManyToManyField(Song,blank=True,)
+    album = models.ManyToManyField(Album,blank=True)
+    pishnahadi_single = models.BooleanField(blank=True,default=False)
+    pishnahadi_homepage = models.BooleanField(blank=True, default=False)
+    tags = models.ManyToManyField('Tag',blank=True)
+    create = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
+
+    def __str__(self):
+        return  self.name
+
+    class Meta:
+        verbose_name = 'پلی‌لیست ادمین‌'
+        verbose_name_plural = 'پلی‌لیست ادمین‌ها'
+
+
+
+
 class Hesohal(models.Model):
     name = models.CharField(max_length=200,null=True,blank=True)
     hesohal_image=models.ImageField(upload_to='hesohal/',null=True,blank=True,default="profiles/user-defualt.png")
     song = models.ManyToManyField(Song,blank=True,)
     album = models.ManyToManyField(Album,blank=True)
+    playlist = models.ManyToManyField(AdminPlaylist,blank=True)
     pishnahadi_single = models.BooleanField(blank=True,default=False)
     pishnahadi_homepage = models.BooleanField(blank=True, default=False)
+    tags = models.ManyToManyField('Tag',blank=True)
     create = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
 
@@ -165,5 +190,3 @@ class Hesohal(models.Model):
     class Meta:
         verbose_name = 'حس و حال'
         verbose_name_plural = 'حس و حال ها'
-
-

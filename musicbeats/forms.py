@@ -45,4 +45,4 @@ class playlistForm(ModelForm):
     def __init__(self , *args , **kwargs):
         super(playlistForm, self).__init__(*args,**kwargs)
 
-        self.fields['list_name'].widget.attrs.update({'class':'input', 'placeholder':'نام ئلی لیست خود را وارد کنید'})
+        self.fields['list_name'].widget.attrs.update({'class':'input', 'placeholder':'نام پلی لیست خود را وارد کنید'})

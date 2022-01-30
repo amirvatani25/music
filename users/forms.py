@@ -20,7 +20,7 @@ class customUserCreationForm(UserCreationForm):
         self.fields['first_name'].widget.attrs.update({'class':'input','placeholder': 'نام '})
         self.fields['last_name'].widget.attrs.update({'class':'input','placeholder': 'نام خانوادگی '})
         self.fields['email'].widget.attrs.update({'class': 'input', 'placeholder': 'ایمیل '})
-        self.fields['username'].widget.attrs.update({'class': 'input', 'placeholder': 'یوزرنیم '})
+        self.fields['username'].widget.attrs.update({'class': 'input', 'placeholder': 'نام کاربری '})
         self.fields['password1'].widget.attrs.update({'class': 'input', 'placeholder': 'رمز '})
         self.fields['password2'].widget.attrs.update({'class': 'input', 'placeholder': 'تایید رمز'})
 

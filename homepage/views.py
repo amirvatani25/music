@@ -1,6 +1,6 @@
 
 from django.shortcuts import render
-from musicbeats.models import Singer , Hesohal , Song , Category , Album
+from musicbeats.models import Singer , Hesohal , Song , Category , Album ,AdminPlaylist
 # Create your views here.
 
 def homepage(request):
@@ -9,8 +9,9 @@ def homepage(request):
     songs = Song.objects.all()
     categorys= Category.objects.all()
     albums = Album.objects.all()
+    adminPlaylists = AdminPlaylist.objects.all()
 
     context = {'singers':singers, 'hesohals':hesohals,
                'songs':songs, 'categorys':categorys,
-               'albums':albums,}
+               'albums':albums,'adminPlaylists':adminPlaylists}
     return render(request, 'homepage.html',context)

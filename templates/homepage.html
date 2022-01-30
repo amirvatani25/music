@@ -2,7 +2,23 @@
 {% load static %}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% block contain %}
+
+
+
 
 
 
@@ -12,7 +28,7 @@
                 {% for album in albums %}
                 {% if album.pishnahadi_homepage == 1 %}
                 <div class="col-12 col-md-6 col-lg-6 col-pad">
-                    <a href="">
+                    <a href="{% url 'single-album' album.id %}">
                         <img src="{{ album.image.url }}" alt="" srcset="">
                         <span class="comment"><i class="fa fa-star "></i>پیشنهاد ویژه</span>
                         <span class="name-album"><i class="fa fa-compact-disc"></i>{{ album.singer}}</span>
@@ -35,16 +51,18 @@
                         حس و حال
                     </h2>
 
-                    <a href="" class="btn-custom1">مشاهده بیشتر</a>
+                    <a href="{% url 'hesohals' %}" class="btn-custom1">مشاهده بیشتر</a>
                 </div>
                 <div class="owl-carousel alm-carousel">
                     {% for hesohal in hesohals %}
+                        {% if hesohal.pishnahadi_homepage == 1 %}
                     <a href="{% url 'single-hesohal' hesohal.id %}" class="box-mus">
                         <img src="{{ hesohal.hesohal_image.url }}" alt="" srcset="">
                         <h3><i class="fa fa-compact-disc"></i> {{ hesohal.name }}</h3>
                         <span><i class="fa fa-music"></i> 29 ترک</span>
 
                     </a>
+                        {% endif %}
                     {% endfor %}
 
                 </div>
@@ -54,7 +72,7 @@
                     تک آهنگ
                 </h2>
 
-                <a href="" class="btn-custom1">مشاهده بیشتر</a>
+                <a href="{% url 'singleTracks' %}" class="btn-custom1">مشاهده بیشتر</a>
             </div>
 
             <div class="single-trrack">
@@ -118,7 +136,7 @@
                         آلبوم ها
                     </h2>
 
-                    <a href="" class="btn-custom1">مشاهده بیشتر</a>
+                    <a href="{% url 'albums' %}" class="btn-custom1">مشاهده بیشتر</a>
                 </div>
                 <div class="owl-carousel alm-carousel">
                     {% for album in albums %}
@@ -141,16 +159,16 @@
             <div class="boxes">
                 <div class="title">
                     <h2>
-                        دسته بندی ها
+                       پلی لیست ها
                     </h2>
                     <a href="" class="btn-custom1">مشاهده بیشتر</a>
                 </div>
 
                 <div class="owl-carousel category-carousel">
-                    {% for category in categorys %}
+                    {% for adminPlaylist in adminPlaylists %}
                     <a href="" class="category-box">
-                        <img src="{{ category.category_image.url }}" alt="" srcset="">
-                        <h3></h3>
+                        <img src="{{ adminPlaylist.image.url }}" alt="" srcset="">
+                        <h3>{{ adminPlaylist.name }}</h3>
                     </a>
                     {% endfor %}
                 </div>
@@ -167,31 +185,14 @@
                     <a href="" class="btn-custom1">مشاهده بیشتر</a>
                 </div>
                 <div class="owl-carousel category-carousel">
-                    <a href="" class="category-box">
-                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
-                        <h3>انرژی</h3>
-                    </a>
-                    <a href="" class="category-box">
-                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
-                        <h3>انرژی</h3>
-                    </a>
-                    <a href="" class="category-box">
-                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
-                        <h3>انرژی</h3>
-                    </a>
-                    <a href="" class="category-box">
-                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
-                        <h3>انرژی</h3>
-                    </a>
-                    <a href="" class="category-box">
-                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
-                        <h3>انرژی</h3>
-                    </a>
-                    <a href="" class="category-box">
-                        <img src="{% static 'img/world-music-1.jpg' %}" alt="" srcset="">
-                        <h3>انرژی</h3>
-                    </a>
 
+                    {% for category in categorys %}
+
+                    <a href="" class="category-box">
+                        <img src="{{ category.category_image.url }}" alt="" srcset="">
+                        <h3>{{ category.name }}</h3>
+                    </a>
+                    {% endfor %}
                 </div>
             </div>
 
