@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'musicbeats.apps.MusicbeatsConfig',
     'homepage.apps.HomepageConfig',
     'users.apps.UsersConfig',
+    'zarinpal.apps.ZarinpalConfig',
 ]
 
 MIDDLEWARE = [

@@ -27,6 +27,9 @@ urlpatterns = [
          name="password_reset_complete"),
 
 
+    path('zarinpal/',include('zarinpal.urls')),
+
+
 
 ]
 
