@@ -175,7 +175,7 @@ def searchHesohal(request):
         search_query = request.GET.get('search_query')
 
 
-    hesohals= Album.objects.distinct().filter(
+    hesohals= Hesohal.objects.distinct().filter(
         Q(name__icontains=search_query)
     )
     return hesohals , search_query

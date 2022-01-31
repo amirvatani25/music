@@ -116,7 +116,7 @@ def albums(request):
 
 def hesohals(request):
     hesohals , search_query = searchHesohal(request)
-    custom_range , hesohals = paginationTheHesohal(request,hesohals,1)
+    custom_range , hesohals = paginationTheHesohal(request,hesohals,3)
     context = {'hesohals':hesohals, 'search_query':search_query,'custom_range':custom_range}
 
     return render(request,'musicbeats/archive-hesohal.html',context)
