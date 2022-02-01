@@ -1,5 +1,5 @@
 from django.db.models import Q
-from .models import Tag , Song ,Singer , Album , Hesohal
+from .models import Tag , Song ,Singer , Album , Hesohal , AdminPlaylist
 from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
 
 #songs and main pagination and search
@@ -179,6 +179,51 @@ def searchHesohal(request):
         Q(name__icontains=search_query)
     )
     return hesohals , search_query
+
+
+
+def paginationThePlaylists(request,adminplaylists,results):
+    page = request.GET.get('page')
+    paginator = Paginator(adminplaylists,results)
+    try:
+        adminplaylists=paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        adminplaylists = paginator.page(page)
+    except EmptyPage:
+        page = paginator.num_pages
+        adminplaylists = paginator.page(page)
+
+
+    leftpages = (int(page)-4)
+
+    if leftpages<1:
+        leftpages=1
+
+    rightpages= (int(page)+5)
+
+    if rightpages>paginator.num_pages:
+        rightpages=paginator.num_pages+1
+
+    custom_range= range(leftpages,rightpages)
+
+    return custom_range,adminplaylists
+
+
+def searchAdminplaylists(request):
+    search_query = ''
+
+    if request.GET.get('search_query'):
+        search_query = request.GET.get('search_query')
+
+    tags = Tag.objects.filter(name__icontains=search_query)
+
+    adminplaylists = AdminPlaylist.objects.distinct().filter(
+        Q(name__icontains=search_query) |
+        Q(tags__in=tags)
+    )
+    return adminplaylists, search_query
+
 
 
 

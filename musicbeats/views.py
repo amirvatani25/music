@@ -1,6 +1,10 @@
 from django.shortcuts import render , redirect
-from .models import Singer , Playlist , Song, Hesohal,Album , Tag
-from .utils import searchSongs,paginationTheSongs,searchSinger,searchHesohal,searchAlbum,paginationTheHesohal,paginationTheAlbum,paginationTheSingers
+from .models import Singer , Playlist , Song, Hesohal,Album , Tag , AdminPlaylist
+from .utils import (searchSongs,paginationTheSongs,
+                    searchSinger,searchHesohal,searchAlbum
+                    ,paginationTheHesohal,paginationTheAlbum,
+                    paginationTheSingers,searchAdminplaylists,
+                    paginationThePlaylists)
 from django.contrib.auth.decorators import login_required
 from .forms import playlistForm
 from django.db.models import Q
@@ -33,12 +37,6 @@ def searchSongs(request):
 
 
 
-def playLists(request):
-    playlists=Playlist.objects.all()
-    context={
-        'playlists':playlists
-    }
-    return render(request,'musicbeats/playlist.html',context)
 
 
 def singers(request):
@@ -97,22 +95,45 @@ def singleAlbum(request,pk):
     singers = Singer.objects.all()
     albums= Album.objects.all()
     songs = Song.objects.all()
+    hesohals = Hesohal.objects.all()
 
     context = {
         'album':albumObj,
         'singers':singers,
         'albums':albums,
         'songs':songs,
+        'hesohals':hesohals,
     }
     return render(request,'musicbeats/single-album.html',context)
 
 
 def albums(request):
+
     albums , search_query = searchAlbum(request)
     custom_range , albums = paginationTheAlbum(request,albums,1)
     context = {'albums':albums , 'search_query':search_query,'custom_range':custom_range}
+    return render(request, 'musicbeats/archive-album.html', context)
 
-    return render(request,'musicbeats/archive-album.html',context)
+def adminPlaylists(request):
+
+    adminplaylists , search_query = searchAdminplaylists(request)
+    custom_range , adminplaylists = paginationThePlaylists(request,adminplaylists , 3)
+    context = {'adminplaylists':adminplaylists, 'search_query':search_query,'custom_range':custom_range}
+
+    return render(request,'musicbeats/archive-playlist.html',context)
+
+def adminPlaylist(request,pk):
+    adminPlaylistObj= AdminPlaylist.objects.get(id=pk)
+    songs = Song.objects.all()
+    albums = Album.objects.all()
+
+    context ={
+        'adminPlaylist':adminPlaylistObj,
+        'songs':songs,
+        'albums':albums
+    }
+    return render(request,'musicbeats/single-admin-playlist.html',context)
+
 
 def hesohals(request):
     hesohals , search_query = searchHesohal(request)
@@ -143,3 +164,6 @@ def createPlaylist(request):
     form = playlistForm
     context = {'form':form}
     return render(request,'musicbeats/')
+
+
+

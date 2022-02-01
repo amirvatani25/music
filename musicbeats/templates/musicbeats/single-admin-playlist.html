@@ -1,0 +1,71 @@
+{% extends 'main.html' %}
+
+{% block contain %}
+
+     <div class="hes-o-hall">
+        <div class="hes-hal-head">
+            <div class="container">
+                <h1>{{ adminPlaylist.name }}</h1>
+            </div>
+        </div>
+
+
+
+        <div class="container-fluid">
+            <div class="list-album-singer single-trrack">
+                <div class="row">
+
+
+
+                            {% for song in adminPlaylist.song.all %}
+
+
+
+                    <div class="col-6 col-md-4 col-lg-2 mb-5">
+                        <div class="box-single-track">
+                            <a href="{% url 'single-track' song.id %}"><img src="{{ song.image.url }}" alt="" srcset=""></a>
+                            <a href="" class="cate1">Sunrise</a>
+                            <span class="time">29/10/1399</span>
+                            <a href="" class="cate">{{song.name}}</a>
+                            <a href="" class="cate3">{{ song.singer }}</a>
+                            <span class="comment">{{ song.total_vote }}<i class="fa fa-comment-alt"></i></span>
+                            <span class="like">{{ song.vote_ratio }}<i class="fa fa-thumbs-up"></i></span>
+                        </div>
+                    </div>
+
+                            {% endfor %}
+
+
+                {% for album in adminPlaylist.album.all %}
+
+
+
+                    <div class="col-6 col-md-4 col-lg-2 mb-5">
+                        <div class="box-single-track">
+                            <a href="{% url 'single-album' album.id %}"><img src="{{ album.image.url }}" alt="" srcset=""></a>
+                            <a href="" class="cate1">Sunrise</a>
+                            <span class="time">29/10/1399</span>
+                            <a href="" class="cate">{{album.name}}</a>
+                            <a href="" class="cate3">{{ album.singer }}</a>
+                            <span class="comment">{{ album.total_vote }}<i class="fa fa-comment-alt"></i></span>
+                            <span class="like">{{ album.vote_ratio }}<i class="fa fa-thumbs-up"></i></span>
+                        </div>
+                    </div>
+
+                            {% endfor %}
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+{% endblock contain %}

@@ -3,20 +3,20 @@
     <div class="archive-singer">
         <div class="container-fluid">
             <div class="title">
-                <h1>آرشیو حس‌و‌حال</h1>
+                <h1>آرشیو پلی لیست ها</h1>
                 <span><span></span></span>
             </div>
             <div class="row single-trrack">
 
 
-                {% for hesohal in hesohals %}
+                {% for adminplaylist in adminplaylists %}
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-5">
                     <div class="box-single-track">
-                        <a href="{% url 'single-hesohal' hesohal.id %}"><img src="{{ hesohal.hesohal_image.url }}" alt="" srcset=""></a>
-                        <a href="" class="cate1">{{ hesohal.name }}</a>
-                        <span class="time">{{ hesohal.create }}</span>
+                        <a href="{% url 'single-admin-playlist' adminplaylist.id %}"><img src="{{ adminplaylist.image.url }}" alt="" srcset=""></a>
+                        <a href="" class="cate1">{{ adminplaylist.name }}</a>
+                        <span class="time">{{ adminplaylist.create }}</span>
                         <a href="" class="cate">
-                            {% for tag in hesohal.tags.all %}
+                            {% for tag in adminplaylist.tags.all %}
                             {{ tag }}
                             {% endfor %}
                             </a>
@@ -30,6 +30,6 @@
     </div>
 
 
-    {% include 'pagination.html' with queryset=hesohals custom_range=custom_range %}
+    {% include 'pagination.html' with queryset=adminplaylists custom_range=custom_range %}
 
 {% endblock contain %}

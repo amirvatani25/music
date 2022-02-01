@@ -73,6 +73,7 @@
                                         22:30
                                     </span>
                                     <a href="{{ song.song128.url }}" class="download"><span class="fa fa-download"></span></a>
+
                                     <a href="" class="addto-playlist"><span class="fa fa-plus"></span></a>
                                 </p>
                             </li>
@@ -89,17 +90,23 @@
                         </div>
 
                         <div class="single-trrack row">
+                            {% for hesohal in hesohals %}
+                                {% if hesohal.pishnahadi_single == 1 %}
+
                             <div class="col-6 col-md-4 col-lg-4 col-xl-3 mb-5">
                                 <div class="box-single-track">
-                                    <a href=""><img src="img/Johannes-Bornlof-Sprinkle-400x400.jpg" alt="" srcset=""></a>
-                                    <a href="" class="cate1">Sunrise</a>
-                                    <span class="time">29/10/1399</span>
-                                    <a href="" class="cate">الکترونیک ، رقص</a>
-                                    <a href="" class="cate3">ساسی</a>
-                                    <span class="comment">22<i class="fa fa-comment-alt"></i></span>
-                                    <span class="like">15<i class="fa fa-thumbs-up"></i></span>
+                                    <a href=""><img src="{{ hesohal.hesohal_image.url }}" alt="" srcset=""></a>
+                                    <a href="" class="cate1">{{ hesohal.name }}</a>
+                                    <span class="time">{{ hesohal.create}}</span>
+                                    <a href="" class="cate">
+                                        {% for tag in hesohal.tags.all %}
+                                            {{ tag }}
+                                            {% endfor %}
+                                    </a>
                                 </div>
                             </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

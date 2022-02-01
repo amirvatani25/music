@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('playlist/', views.playLists, name="playlist"),
     path('singers/',views.singers,name="singers"),
     path('singer/<str:pk>/',views.singer,name='singer'),
     path('player/<str:pk>/',views.play,name="play"),
@@ -12,5 +11,7 @@ urlpatterns = [
     path('albums/',views.albums,name = "albums"),
     path('archive-hesohal/',views.hesohals,name="hesohals"),
     path('archive-singeTrack/',views.singleSongs,name="singleTracks"),
-    path('search-songs/',views.searchSongs , name = "search-songs")
+    path('search-songs/',views.searchSongs , name = "search-songs"),
+    path('archive-playlist/',views.adminPlaylists,name="admin-playlists"),
+    path('single-playlist<str:pk>/', views.adminPlaylist, name="single-admin-playlist"),
 ]
