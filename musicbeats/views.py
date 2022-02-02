@@ -163,7 +163,20 @@ def createPlaylist(request):
 
     form = playlistForm
     context = {'form':form}
-    return render(request,'musicbeats/')
+    return render(request,'musicbeats/',context)
+
+def createplaylist_view(request):
+    songs=Song.objects
+    if request.method == 'POST':
+        playlist=Playlist()
+        playlist.list_name=request.POST['list_name']
+        playlist.user=request.user
+        playlist.save()
+        print(playlist.list_name,playlist.user)
+        playlist.songs.add(*songs)  # <-- here
+        return render(request,'addsongs.html',{'songs':songs})
+    else:
+        return render(request,'createplaylist.html',{'songs':songs})
 
 
 

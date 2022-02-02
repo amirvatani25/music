@@ -1,7 +1,7 @@
 import uuid
 from users.models import Profile
 from django.db import models
-from users.models import Profile
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -136,7 +136,7 @@ class Category (models.Model):
 
 class Playlist(models.Model):
     list_name=models.CharField(max_length=100,null=True,blank=True)
-    user=models.ForeignKey(Profile, null=True, blank=True,on_delete=models.CASCADE)
+    user=models.ForeignKey(User, null=True, blank=True,on_delete=models.CASCADE)
     playlist_image= models.ImageField(upload_to='playlist/',null=True,blank=True,default="profiles/user-defualt.png")
     songs=models.ManyToManyField(Song,blank=True)
     create = models.DateTimeField(auto_now_add=True)
