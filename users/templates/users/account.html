@@ -64,16 +64,11 @@
                                 <a href=""><i class="fa fa-list"></i>مشاهده همه</a>
                             </div>
                             <ul>
+                                {% for playlist in playlists %}
+
                                 <li>
-                                    <p>پلی لیست 1</p><span>تاریخ</span><a href="">نمایش ترک ها</a></li>
-                                <li>
-                                    <p>پلی لیست 1</p><span>تاریخ</span><a href="">نمایش ترک ها</a></li>
-                                <li>
-                                    <p>پلی لیست 1</p><span>تاریخ</span><a href="">نمایش ترک ها</a></li>
-                                <li>
-                                    <p>پلی لیست 1</p><span>تاریخ</span><a href="">نمایش ترک ها</a></li>
-                                <li>
-                                    <p>پلی لیست 1</p><span>تاریخ</span><a href="">نمایش ترک ها</a></li>
+                                    <p>{{ playlist.list_name}}</p><span>{{ playlist.create }}</span><a href="">نمایش ترک ها</a>><a href="{% url 'delete-playlist' playlist.id %}">پاک کردن پلی لیست</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>

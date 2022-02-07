@@ -6,8 +6,9 @@ from .utils import (searchSongs,paginationTheSongs,
                     paginationTheSingers,searchAdminplaylists,
                     paginationThePlaylists)
 from django.contrib.auth.decorators import login_required
-from .forms import playlistForm
+from .forms import playlistForm , reviewForm
 from django.db.models import Q
+from django.contrib import messages
 
 
 
@@ -80,15 +81,45 @@ def singeTrack(request,pk):
     singers = Singer.objects.all()
     albums= Album.objects.all()
     hesohals=Hesohal.objects.all()
+    form = reviewForm()
+    form1 = playlistForm()
+
+
+    if request.method == 'POST':
+        form = reviewForm(request.POST)
+        review = form.save(commit=False)
+        review.song = songObj
+        review.owner=request.user.profile
+        review.save()
+
+        messages.success(request,'your reviwe was succfully added!')
+        return redirect('project' , pk=songObj.id)
+
 
     context = {
         'song':songObj,
         'singers':singers,
         'albums':albums,
         'hesohals':hesohals,
+        'form':form,
+        'form1':form1,
     }
 
     return render(request,'musicbeats/single-tak-music.html',context)
+
+def addplaylist(request):
+    profile = request.user.profile
+    form = playlistForm()
+
+    if request.method == 'POST':
+        form = playlistForm(request.POST)
+        if form.is_valid():
+            playlist = form.save(commit=False)
+            playlist.owner = profile
+            playlist.save()
+            return redirect('account')
+
+
 
 def singleAlbum(request,pk):
     albumObj= Album.objects.get(id=pk)
@@ -96,6 +127,7 @@ def singleAlbum(request,pk):
     albums= Album.objects.all()
     songs = Song.objects.all()
     hesohals = Hesohal.objects.all()
+    form1 = playlistForm()
 
     context = {
         'album':albumObj,
@@ -103,6 +135,7 @@ def singleAlbum(request,pk):
         'albums':albums,
         'songs':songs,
         'hesohals':hesohals,
+        'form1':form1
     }
     return render(request,'musicbeats/single-album.html',context)
 
@@ -148,6 +181,8 @@ def singleSongs(request):
     context = {'songs':songs,'custom_range':custom_range}
 
     return  render(request,'musicbeats/archive-takmusic.html',context)
+
+
 @login_required(login_url='login')
 def createPlaylist(request):
     profile = request.user.profile
@@ -156,27 +191,34 @@ def createPlaylist(request):
     if request.method == 'POST':
         form = playlistForm(request.POST)
         if form.is_valid():
-            plalist = form.save(commit=False)
-            plalist.owner = profile
-            plalist.save()
+            playlist = form.save(commit=False)
+            playlist.owner = profile
+            playlist.save()
             return redirect('account')
 
-    form = playlistForm
-    context = {'form':form}
-    return render(request,'musicbeats/',context)
 
-def createplaylist_view(request):
-    songs=Song.objects
+# def createplaylist_view(request):
+#     songs=Song.objects
+#     if request.method == 'POST':
+#         playlist=Playlist()
+#         playlist.list_name=request.POST['list_name']
+#         playlist.user=request.user
+#         playlist.save()
+#         print(playlist.list_name,playlist.user)
+#         playlist.songs.add(*songs)  # <-- here
+#         return render(request,'addsongs.html',{'songs':songs})
+#     else:
+#         return render(request,'createplaylist.html',{'songs':songs})
+#
+#
+#
+
+@login_required(login_url='login')
+def deletePlaylist(request, pk):
+    profile = request.user.profile
+    playlist= profile.playlist_set.get(id=pk)
     if request.method == 'POST':
-        playlist=Playlist()
-        playlist.list_name=request.POST['list_name']
-        playlist.user=request.user
-        playlist.save()
-        print(playlist.list_name,playlist.user)
-        playlist.songs.add(*songs)  # <-- here
-        return render(request,'addsongs.html',{'songs':songs})
-    else:
-        return render(request,'createplaylist.html',{'songs':songs})
-
-
-
+        playlist.delete()
+        return redirect('account')
+    context = {'object':playlist}
+    return render(request, 'delete-template.html',context)

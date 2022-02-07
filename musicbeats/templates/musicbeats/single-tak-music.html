@@ -49,8 +49,8 @@
                     <div class="music-title">
                         <div class="music-image"><img src="{{ song.image.url}}" alt=""></div>
                         <div class="des">
-                            <h1>{{ song.name}}<br>
-                                <h5>{{ song.singer}}</h5>
+                            <h1>{{ song.name }}<br>
+                                <h5>{{ song.singer }}</h5>
                             </h1>
                             <p>{{ song.album.name }}</p>
                             <p>زمان موزیک</p>
@@ -168,11 +168,47 @@
                     </div>
                 </div>
 
+                <div class="comment">
+                    <h3 class="singleSong__subtitle">Feedback</h3>
+                    <h5 class="song--rating">
+                        {{ song.vote_ratio }} Positive Feedback ({{ song.total_vote }} Vote)
+                    </h5>
+
+                    <form class="form" action="#"  method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+
+                                <div class="form__field">
+                                    <label for="formInput#textarea">{{ field.label }}</label>
+                                </div>
+                        {% endfor %}
+                    <input class="btn btn--sub btn--lg" type="submit" value="نظر"/>
+                    </form>
+                <div class="commentList">
+                    {% for review in song.review_set.all %}
+                        {% if review.body %}
+                            <div class="comment">
+                                <img class="avatar avatar--md" src="{{ review.owner.profile_image.url }}" alt="user" />
+
+                                <div class="comment__details">
+                                    <p class="comment__info"> {{ review.body|linebreaksbr }}</p>
+                                </div>
+
+
+                            </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+                </div>
 
 
             </div>
         </div>
     </div>
+
+
+
+
 
 
 

@@ -70,12 +70,9 @@ class Song(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['total_vote']
-
-
-    class Meta:
         verbose_name = 'آهنگ'
         verbose_name_plural = 'آهنگ ها'
+        ordering = ['total_vote']
 
 
 
@@ -90,19 +87,18 @@ class Review (models.Model):
     body = models.TextField(blank=True, null=True)
     value = models.CharField(max_length=200, choices=VOTE_TYPE)
     create = models.DateTimeField(auto_now_add=True)
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True , editable=False)
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True ,unique=True, editable=False)
+
+
 
     class Meta:
         unique_together = [['owner', 'song']]
+        verbose_name = 'کامنت'
+        verbose_name_plural = 'کامنت ها'
+        ordering = ['create']
 
     def __str__(self):
         return self.value
-
-
-    class Meta:
-        verbose_name = 'کامنت'
-        verbose_name_plural = 'کامنت ها'
-
 
 
 class Tag (models.Model):
@@ -136,7 +132,7 @@ class Category (models.Model):
 
 class Playlist(models.Model):
     list_name=models.CharField(max_length=100,null=True,blank=True)
-    user=models.ForeignKey(User, null=True, blank=True,on_delete=models.CASCADE)
+    owner=models.ForeignKey(Profile, null=True, blank=True,on_delete=models.CASCADE)
     playlist_image= models.ImageField(upload_to='playlist/',null=True,blank=True,default="profiles/user-defualt.png")
     songs=models.ManyToManyField(Song,blank=True)
     create = models.DateTimeField(auto_now_add=True)

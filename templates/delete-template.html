@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% block contain %}
+<form action="" method="post">
+    {% csrf_token %}
+<p>are u sure u wabt to delete "{{ object }}</p>
+
+    <a href="{% url 'account' %}">
+       خیر
+       <a/>
+    <input type="submit" value="بله">
+</form>
+{% endblock contain %}

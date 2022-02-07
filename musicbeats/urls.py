@@ -13,5 +13,7 @@ urlpatterns = [
     path('archive-singeTrack/',views.singleSongs,name="singleTracks"),
     path('search-songs/',views.searchSongs , name = "search-songs"),
     path('archive-playlist/',views.adminPlaylists,name="admin-playlists"),
+    path('addplaylist/',views.createPlaylist, name ="add-playlist"),
+    path('delete-playlist/<str:pk>',views.deletePlaylist, name ="delete-playlist"),
     path('single-playlist<str:pk>/', views.adminPlaylist, name="single-admin-playlist"),
 ]

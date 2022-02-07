@@ -17,15 +17,12 @@
               </button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
-                        <input type="text" name="" id="">
-                        <input type="text">
+                    <form action="{% url 'add-playlist' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        {% for field in form1 %}
+                        {{ field }}
+                        {% endfor %}
                         <button type="submit">اضافه به پلی لیست</button>
-                    </form>
-                    <form action="">
-                        <input type="text" name="" id="">
-                        <input type="text">
-                        <button type="submit">ساخت پلی لیست</button>
                     </form>
                 </div>
                 <div class="modal-footer">

@@ -10,6 +10,7 @@ from django.db.models import Q
 from .forms import customUserCreationForm,profileForm
 from musicbeats.forms import playlistForm
 from  django.http import  HttpResponse , HttpResponseRedirect
+from musicbeats.models import Playlist
 
 
 # Create your views here.
@@ -64,6 +65,18 @@ def registerUser(request):
     form = customUserCreationForm()
 
     if request.method == 'POST':
+        captcha_token = request.POST.get("g-recaptcha-response")
+        cap_url = "https://www.google.com/recaptcha/api/siteverify"
+        captcha_secret = "6LfF6wkeAAAAAFOJdHxRLAOrDL6ptJKJMT0Wjgtm"
+        cap_data = {"secret": captcha_secret, "response": captcha_token}
+        cap_server_response = requests.post(url=cap_url, data=cap_data)
+        cap_json = json.loads(cap_server_response.text)
+        if cap_json['success'] == False:
+            messages.error(request, 'کپچا را اشتباه وارد کردید!')
+            #TODO: error massages
+            return HttpResponseRedirect("/users/login/")
+
+
         form = customUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
@@ -92,7 +105,8 @@ def userProfile(request , pk):
 @login_required(login_url='login')
 def userAccount(request):
     profile= request.user.profile
-    form = profileForm
+    form = profileForm()
+    playlists = profile.playlist_set.all()
 
     if request.method == 'POST':
         form = playlistForm(request.POST)
@@ -102,7 +116,7 @@ def userAccount(request):
             plalist.save()
             return redirect('account')
     form = playlistForm
-    context = {'profile':profile,'form':form}
+    context = {'profile':profile,'form':form , 'playlists':playlists}
     return render(request,'users/account.html',context)
 
 @login_required(login_url='login')
