@@ -65,17 +65,6 @@ def registerUser(request):
     form = customUserCreationForm()
 
     if request.method == 'POST':
-        captcha_token = request.POST.get("g-recaptcha-response")
-        cap_url = "https://www.google.com/recaptcha/api/siteverify"
-        captcha_secret = "6LfF6wkeAAAAAFOJdHxRLAOrDL6ptJKJMT0Wjgtm"
-        cap_data = {"secret": captcha_secret, "response": captcha_token}
-        cap_server_response = requests.post(url=cap_url, data=cap_data)
-        cap_json = json.loads(cap_server_response.text)
-        if cap_json['success'] == False:
-            messages.error(request, 'کپچا را اشتباه وارد کردید!')
-            #TODO: error massages
-            return HttpResponseRedirect("/users/login/")
-
 
         form = customUserCreationForm(request.POST)
         if form.is_valid():

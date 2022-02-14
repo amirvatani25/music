@@ -48,3 +48,19 @@ class Profile(models.Model):
         return str(self.username)
 
 
+class Payment(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name="کاربر")
+    amount = models.IntegerField("مبلغ")
+    transaction_time = models.DateTimeField("زمان تراکنش", auto_now_add=True)
+    verify = models.BooleanField("نتیجه تراکنش", default=False)
+
+    # transaction_code = models.CharField("رسید تراکنش", max_length=30)
+
+    def __str__(self):
+        return "{} تومان افزایش اعتبار برای {}".format(self.amount, self.user)
+
+    class Meta:
+        verbose_name = "پرداخت ها"
+        verbose_name_plural = "پرداخت ها"
+
+

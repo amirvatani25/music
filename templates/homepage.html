@@ -76,12 +76,14 @@
             </div>
 
             <div class="single-trrack">
-                <div class="row">
+                <div class="owl-carousel alm-carousel">
+
+
+
                     {% for song in songs %}
                         {% if song.album_id == NULL %}
 
 
-                    <div class="col-6 col-md-4 col-lg-2 mb-5">
                         <div class="box-single-track">
                             <a href="{% url 'single-track' song.id  %}"><img src="{{ song.image.url }}" alt="" srcset=""></a>
                             <span class="comment">{{ song.total_vote }}<i class="fa fa-comment-alt"></i></span>
@@ -98,9 +100,14 @@
                             </div>
 
                         </div>
-                    </div>
                         {% endif %}
                     {% endfor %}
+
+
+
+
+
+
                 </div>
             </div>
 
@@ -111,18 +118,27 @@
                         خواننده های پیشنهادی
                     </h2>
 
-                    <a href="{% url 'singers' %}" class="btn-custom1">مشاهده همه خوانندها</a>
+                    <a href="{% url 'singers' %}" class="btn-custom1">مشاهده بیشتر</a>
                 </div>
 
 
                 <div class="owl-carousel alm-carousel">
                     {% for singer in singers %}
                     {% if singer.pishnahadi_homepage == True %}
-                    <div class="box-mus">
-                        <a href="{% url 'singer' singer.id %}"><img src="{{ singer.singer_image.url }}" alt="" srcset="">
-                            <h3>{{ singer.name }}</h3>
+
+
+                    <div class="box-singer">
+                        <a href="{% url 'singer' singer.id %}" class="image-singer">
+                            <img src="{{ singer.singer_image.url }}" alt="">
+                            <span>مشاهده آهنگ ها</span>
                         </a>
+                        <a href="" class="name-singer">{{ singer.name }}</a>
                     </div>
+
+
+
+
+
                         {% endif %}
                 {% endfor %}
 
@@ -199,13 +215,13 @@
             <div class="bakhsh-payani">
                 <div class="row">
                     <div class="col-4 ">
-                        <p>هنرمندان</p>
+                        <a href="">هنرمندان</a>
                     </div>
                     <div class="col-4">
-                        <p>ژانرها</p>
+                        <a href="">دسته بندی ها</a>
                     </div>
                     <div class="col-4">
-                        <p>سازها</p>
+                        <a href="">آلبوم ها</a>
                     </div>
                 </div>
             </div>

@@ -9,11 +9,27 @@ from django.contrib.auth.decorators import login_required
 from .forms import playlistForm , reviewForm
 from django.db.models import Q
 from django.contrib import messages
+from  django.http import JsonResponse
+import json
 
 
 
+def updateItem(request):
+    data = json.loads(request.body)
+    songId=data['songId']
+    action = data['action']
 
-# Create your views here.
+    print('action:',action)
+    print('songId:', songId)
+
+
+    profile = request.user.profile
+    playlists = profile.playlist_set.all()
+    song = Song.objects.get(id = songId)
+    playlist , create = Playlist.objects.get_or_create(profile=profile,complete=False,)
+    song
+
+    return JsonResponse('Item was added',safe=False)
 
 
 def searchSongs(request):
@@ -122,12 +138,17 @@ def addplaylist(request):
 
 
 def singleAlbum(request,pk):
+    profile = request.user.profile
     albumObj= Album.objects.get(id=pk)
     singers = Singer.objects.all()
     albums= Album.objects.all()
     songs = Song.objects.all()
     hesohals = Hesohal.objects.all()
     form1 = playlistForm()
+    playlists = profile.playlist_set.all()
+
+
+
 
     context = {
         'album':albumObj,
@@ -135,7 +156,8 @@ def singleAlbum(request,pk):
         'albums':albums,
         'songs':songs,
         'hesohals':hesohals,
-        'form1':form1
+        'form1':form1,
+        'playlists':playlists,
     }
     return render(request,'musicbeats/single-album.html',context)
 

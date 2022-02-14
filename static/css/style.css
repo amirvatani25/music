@@ -69,7 +69,44 @@ header .register-header {
     position: relative;
     top: -40px;
 }
+.register a{
+    margin-top: 18px;
+    display: block;
+    color: wheat;
+    font-weight: 100;
+}
 
+.pagination{
+    list-style: none;
+    display: inline-flex;
+}
+
+.pagination li{
+    display: inline-block;
+    background: #e4c150;
+    margin: 0 2px 0 2px;
+    transition: 0.5s;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.pagination a:hover{
+
+    background: darkred!important;
+    transition: 0.5s;
+color: white!important;
+}
+
+.btn--sub{
+    background: darkred!important;
+    color: white!important;
+
+}
+.pagination li a{
+        background: transparent;
+    border: navajowhite;
+    color: black;
+}
 header .logo img {
     width: 200px;
 }
@@ -334,12 +371,13 @@ main .box-mus span i {
 
 .category-box h3 {
     color: white;
-    top: 0;
+    top: 35%;
     position: absolute;
     display: block;
     width: 100%;
     text-align: center;
-    margin-top: 14%;
+    margin:0!important;
+    padding: 0!important;
 }
 
 .slider img {
@@ -360,6 +398,7 @@ main {
 main .title {
     margin-bottom: 20px;
     border-bottom: 1px solid #323232;
+    text-align: right;
 }
 
 main .title h2 {
@@ -383,11 +422,20 @@ main .title a {
     width: unset;
     background: transparent;
 }
-
+.menu-res{
+    display: none;
+}
 main .title a:hover {
     color: black;
 }
+.btn-custom1 i{
+    position: relative;
+    top: 2px;
+}
 
+.reg-icon-res{
+    display: none!important;
+}
 main .title .btn-custom1::before {
     border-radius: 0;
 }
@@ -422,6 +470,7 @@ main .title .btn-custom1::before {
     overflow: hidden;
     width: 100%;
     display: block;
+    max-height: 250px;
 }
 
 .single-trrack .box-single-track img {
@@ -882,7 +931,7 @@ input {
 
 /*footer css*/
 
-.bakhsh-payani p {
+.bakhsh-payani a {
     color: rgb(223, 116, 17);
     font-size: 13px;
     text-align: center;
@@ -931,7 +980,6 @@ input {
     color: white;
     font-weight: 500;
     position: relative;
-    right: 41px;
     font-size: 13px;
 }
 
@@ -942,8 +990,7 @@ input {
 
 .footer .footer-item {
     text-align: right;
-    right: 49px;
-    top: -16px;
+
 }
 
 .end {
@@ -1464,6 +1511,29 @@ single tak-music css
     .single-takmusic .list-takmusic ul li p a {
         margin-right: 30px;
     }
+
+    header .tools{
+        margin-right: 0!important;
+    }
+    .r-nav .drop-down i{
+            padding: 0px 0px 12px 19px!important;
+        font-size: 23px!important;
+    }
+    .r-nav .search i {
+        color: white;
+        font-size: 19px;
+        position: relative;
+        top: -2px;
+    }
+    header .register-header a
+    {
+        margin: 0!important;
+    }
+    header .logo img {
+    padding: 8px 0;
+    width: 138px;
+    right: -12px;
+}
 }
 
 #app-cover {
@@ -2028,6 +2098,20 @@ panel-user css
     .panel-user .panel-u {
         margin-bottom: 55px;
     }
+
+    header nav{
+        display: none;
+    }
+
+    .menu-res{
+        display: block;
+    }
+    .reg-icon-res{
+        display: inline!important;
+    }
+    .reg-icon{
+        display: none!important;
+    }
 }
 
 /*new-modal*/
@@ -2067,3 +2151,5 @@ button {
 
 
 /*end new-modal*/
+
+

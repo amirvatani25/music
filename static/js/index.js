@@ -72,5 +72,3 @@ $(".search-icon").click(function() {
     $(".search-form").toggleClass("search-open");
     $('.search-icon').toggleClass('menu-op');
 });
-
-f

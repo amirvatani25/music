@@ -23,7 +23,20 @@
                         {{ field }}
                         {% endfor %}
                         <button type="submit">اضافه به پلی لیست</button>
+
+
                     </form>
+
+                    <form>
+                {% for playlist in playlists %}
+
+                    <li><p>{{ playlist.list_name}}</p><li/>
+                    <button data-song="" class="btn btn-outline-secondary add-btn add-song">اضافه به پلی لیست</button>
+                {% endfor %}
+
+                    </form>
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
@@ -125,7 +138,11 @@
                                     </span>
                                     <a href="{{ song.song128.url }}" class="download"><span class="fa fa-download"></span></a>
                                     <button type="button" class="addto-playlist" data-toggle="modal" data-target="#exampleModal">
+
                                         <span class="fa fa-plus"></span>
+                                    </button>
+                                     <button data-song="{{ song.id }}" data-action="add" class="btn btn-outline-secondary add-btn add-song">
+                                         اضافه کردن به پلی لیست
                                     </button>
                                 </p>
                             </li>

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%ao@x7fe7#j6t7a3tx8+9_9e@cz)+nzkaxso5a7opy)k49std5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['itteam.runflare.run','127.0.0.1']
 
 
 # Application definition
@@ -129,7 +129,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'mozmozi123456@gmail.com'
-EMAIL_HOST_PASSWORD = 'idrqiwybcihgxipp'
+EMAIL_HOST_PASSWORD = 'ntewrinngbvxiahm'
 
 
 

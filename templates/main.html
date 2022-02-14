@@ -30,13 +30,18 @@
 
             <div class="register-header">
                 {% if request.user.is_authenticated %}
-                <a href="{% url 'account' %}" class="send-adv">حساب کاربری</a>
-                <a href="{% url 'logout' %}" class="send-adv">خروج</a>
+                <a href="{% url 'account' %}" class="send-adv reg-icon">حساب کاربری</a>
+                <a class="btn-custom1 reg-icon-res" href="{% url 'account' %}"><i class="fa fa-user"></i></a>
+                <a href="{% url 'logout' %}" class="send-adv reg-icon">خروج</a>
+                <a class="btn-custom1 reg-icon-res" href="{% url 'logout' %}"><i class="fa fa-sign-out-alt"></i></a>
                 {% else %}
-                <a class="btn-custom1" href="{% url 'login' %}">ورود</a>
-                <a class="btn-custom1" href="{% url 'register' %}">ثبت نام</a>
+                <a class="btn-custom1 reg-icon" href="{% url 'login' %}">ورود</a>
+                <a class="btn-custom1 reg-icon-res" href="{% url 'login' %}"><i class="fa fa-sign-in-alt"></i></a>
+                <a class="btn-custom1 reg-icon" href="{% url 'register' %}">ثبت نام</a>
+                <a class="btn-custom1 reg-icon-res" href="{% url 'register' %}"><i class="fa fa-user"></i></a>
                 {% endif %}
             </div>
+
 
             <div class="tools">
                 <div class="r-nav">
@@ -55,6 +60,12 @@
                             </a>
                             <img src="{% static 'img/logo.png' %}" alt="">
                             <ul>
+
+
+
+                                <li class="menu-res"><a href="{% url 'homepage' %}">صفحه اصلی</a></li>
+                                <li class="menu-res"><a href="{% url 'homepage' %}">تماس با ما</a></li>
+                                <li class="menu-res"><a href="{% url 'homepage' %}">درباره ما</a></li>
                                 <li><a href="{% url 'albums' %}"><i class="fa fa-music"></i>آلبوم موسیقی</a></li>
                                 <li><a href="{% url 'singleTracks' %}"><i class="fa fa-music"></i>تک موسیقی</a></li>
                                 <li><a href=""><i class="fa fa-assistive-listening-systems"></i>پلی لیست</a></li>
@@ -87,7 +98,8 @@
                     <li><a href="{% url 'albums' %}">آلبوم</a></li>
                     <li><a href="{% url 'singleTracks' %}">تک آهنگ</a></li>
                     <li><a href="">پلی لیست</a></li>
-                    <li><a href="">دیسکوگرافی</a></li>
+                    <li><a href="{% url 'homepage' %}">تماس با ما</a></li>
+                    <li><a href="{% url 'homepage' %}">درباره ما</a></li>
                 </ul>
             </nav>
         </div>
@@ -114,6 +126,27 @@
     <script src="{% static 'js/index.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="https://www.google.com/recaptcha/api.js?hl=fa" async defer></script>
+    <script type="text/javascript">
+        var user = '{{ request.user }}'
+
+       function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+    </script>
+    <script type="text/javascript" src="{% static 'js/playlist.js' %}"></script>
 
 </body>
 

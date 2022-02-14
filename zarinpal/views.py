@@ -1,13 +1,11 @@
-from django.http import HttpResponse
+# -*- coding: utf-8 -*-
+# Github.com/Rasooll
+from django.http import HttpResponse,HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import redirect
 import requests
 import json
-from zeep import Client
-
-from django.http import HttpResponse
-from django.shortcuts import redirect
-import requests
-import json
+from users.models import Payment
 
 MERCHANT = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
 ZP_API_REQUEST = "https://api.zarinpal.com/pg/v4/payment/request.json"
