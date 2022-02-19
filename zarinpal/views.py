@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 # Github.com/Rasooll
-from django.http import HttpResponse,HttpResponseRedirect
-from django.urls import reverse
+from django.http import HttpResponse
 from django.shortcuts import redirect
 import requests
 import json
-from users.models import Payment
 
 MERCHANT = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
 ZP_API_REQUEST = "https://api.zarinpal.com/pg/v4/payment/request.json"
@@ -16,7 +14,7 @@ description = "توضیحات مربوط به تراکنش را در این قس
 email = 'email@example.com'  # Optional
 mobile = '09123456789'  # Optional
 # Important: need to edit for realy server.
-CallbackURL = 'http://127.0.0.1:8000/zarinpal/verify/'
+CallbackURL = 'http://localhost:8000/verify/'
 
 
 def send_request(request):

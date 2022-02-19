@@ -5,11 +5,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
+from azbankgateways.urls import az_bank_gateways_urls
+from payments.views import go_to_gateway_view , callback_gateway_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('homepage.urls')),
     path('users/', include('users.urls')),
     path('musicbeats/',include('musicbeats.urls')),
+    path('payments/', include('payments.urls')),
 
 
 
@@ -29,6 +33,9 @@ urlpatterns = [
 
     path('zarinpal/',include('zarinpal.urls')),
 
+    path('bankgateways/', az_bank_gateways_urls()),
+    path('go-to-gateway/',go_to_gateway_view,name="go_to_gateway_view"),
+    path('callback-gateway/',callback_gateway_view,name="callback_gateway_view"),
 
 
 ]
