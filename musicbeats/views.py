@@ -11,6 +11,7 @@ from django.db.models import Q
 from django.contrib import messages
 from  django.http import JsonResponse
 import json
+from django.utils import timezone
 
 
 
@@ -27,7 +28,6 @@ def updateItem(request):
     playlists = profile.playlist_set.all()
     song = Song.objects.get(id = songId)
     playlist , create = Playlist.objects.get_or_create(profile=profile,complete=False,)
-    song
 
     return JsonResponse('Item was added',safe=False)
 
@@ -70,14 +70,7 @@ def singer(request,pk):
     context={'singer':singerObj,
              'songs':songs,}
     return render(request,'musicbeats/single-singer.html',context)
-def play(request,pk):
-    songObj=Song.objects.get(id=pk)
 
-
-    context={
-        'song':songObj
-    }
-    return render(request,'musicbeats/player.html',context)
 
 def single_hesohal(request,pk):
     hesohalObj= Hesohal.objects.get(id=pk)
@@ -93,6 +86,14 @@ def single_hesohal(request,pk):
 
 
 def singeTrack(request,pk):
+    user = request.user
+    if user.is_authenticated:
+        profile = request.user.profile
+        profile.payment_time = timezone.now()
+        profile.save()
+        if (profile.payment_time > profile.expire_date):
+            profile.vip = False
+            profile.save()
     songObj= Song.objects.get(id=pk)
     singers = Singer.objects.all()
     albums= Album.objects.all()
@@ -138,6 +139,14 @@ def addplaylist(request):
 
 
 def singleAlbum(request,pk):
+    user = request.user
+    if user.is_authenticated:
+        profile = request.user.profile
+        profile.payment_time = timezone.now()
+        profile.save()
+        if (profile.payment_time > profile.expire_date):
+            profile.vip = False
+            profile.save()
     profile = request.user.profile
     albumObj= Album.objects.get(id=pk)
     singers = Singer.objects.all()
@@ -178,6 +187,7 @@ def adminPlaylists(request):
     return render(request,'musicbeats/archive-playlist.html',context)
 
 def adminPlaylist(request,pk):
+
     adminPlaylistObj= AdminPlaylist.objects.get(id=pk)
     songs = Song.objects.all()
     albums = Album.objects.all()

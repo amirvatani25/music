@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login , authenticate , logout
 from django.contrib import messages
 from django.db.models import Q
-from .forms import customUserCreationForm,profileForm
+from .forms import customUserCreationForm,profileForm , buySubsForm
 from musicbeats.forms import playlistForm
 from  django.http import  HttpResponse , HttpResponseRedirect
 from musicbeats.models import Playlist
@@ -126,4 +126,18 @@ def editAccount(request):
 
 
 
+def buySubscribtion(request):
+    profile = request.user.profile
+    form = buySubsForm()
+    if request.method == 'POST':
+        form = buySubsForm(request.POST)
+        if form.is_valid():
+            subs = form.save(commit=False)
+            subs.owner = profile
+            subs.save()
+            return redirect("go_to_gateway_view")
 
+
+    form = buySubsForm
+    context = {'form':form,'profile':profile}
+    return render(request,'musicbeats/buy-subscribtion.html',context)

@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile , Payment
+from .models import Profile , Payment , Subscription
 from django import forms
 from django.core.exceptions import ValidationError
 
@@ -44,5 +44,17 @@ class profileForm(ModelForm):
         self.fields['username'].widget.attrs.update({'class': 'input disabled', 'placeholder': 'یوزرنیم '})
         self.fields['profile_image'].widget.attrs.update({'class': 'input','type':'file'})
 
+
+
+class buySubsForm(ModelForm):
+    class Meta:
+        model = Subscription
+        fields =['subscriptions',]
+
+
+    def __init__(self, *args, **kwargs):
+        super(buySubsForm,self).__init__(*args,**kwargs)
+
+        self.fields['subscriptions'].widget.attrs.update({'class':'input orm-control form-control-lg',})
 
 

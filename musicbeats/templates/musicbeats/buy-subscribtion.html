@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block contain %}
+    <div class="box">
+        <h3>خرید اشتراک ویژه</h3>
+                <form method="post" action="{% url 'buy-subscribtion' %}" class="form">
+                    {% csrf_token %}
+                    <label for="">نوع اشتراک</label>
+                    {% for field in form %}
+                    {{ field }}
+                    {% endfor %}
+                    <!-- <label for="">کد تخفیف</label><br> -->
+                    <!-- <input type="text">
+                    <br> -->
+
+                    <button class="col-12 btn-buy-p">خرید / تمدید اشتراک</button>
+                </form>
+
+
+    </div>
+{% endblock contain %}

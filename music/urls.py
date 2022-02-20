@@ -31,7 +31,6 @@ urlpatterns = [
          name="password_reset_complete"),
 
 
-    path('zarinpal/',include('zarinpal.urls')),
 
     path('bankgateways/', az_bank_gateways_urls()),
     path('go-to-gateway/',go_to_gateway_view,name="go_to_gateway_view"),
