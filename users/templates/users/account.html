@@ -52,9 +52,26 @@
                                     <p>ایمیل : <span>{{ profile.email }}</span></p>
                                 </div>
                                 <div class="col-lg-6">
+                                {% if profile.vip == 1 %}
+                                    {% if amountOfSub == '50000' %}
                                     <p>اشتراک : <span>1 ماهه</span></p>
+                                    {% endif %}
+                                    {% if amountOfSub == '100000' %}
+                                    <p>اشتراک : <span>3 ماهه</span></p>
+                                    {% endif %}
+                                    {% if amountOfSub == '200000' %}
+                                    <p>اشتراک : <span>6 ماهه</span></p>
+                                    {% endif %}
+                                    {% if amountOfSub == '500000' %}
+                                    <p>اشتراک : <span>12 ماهه</span></p>
+                                    {% endif %}
+
+                                {% else %}
+                                <p>اشتراک : <span>شما اشتراکی ندارید</span></p>
+                                {% endif %}
                                     <p>نام کاربری : <span>{{ profile.username }}</span></p>
                                     <p>تاریخ عضویت : <span>{{ profile.create }}</span></p>
+
                                 </div>
                             </div>
                         </div>

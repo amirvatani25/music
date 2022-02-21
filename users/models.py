@@ -67,5 +67,6 @@ class Subscription(models.Model):
     ]
 
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name="کاربر")
-    subscriptions = models.CharField(('buy'), max_length=200, choices=BUY_CONDITION, default=oneMonth)
+    subscriptions = models.CharField(('buy'),max_length=100, choices=BUY_CONDITION, default=oneMonth)
+    create = models.DateTimeField(auto_now_add=True)
 

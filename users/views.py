@@ -93,7 +93,9 @@ def userProfile(request , pk):
 
 @login_required(login_url='login')
 def userAccount(request):
-    profile= request.user.profile
+    profile = request.user.profile
+    subscription = profile.subscription_set.latest('create')
+    amountOfSub = subscription.subscriptions
     form = profileForm()
     playlists = profile.playlist_set.all()
 
@@ -105,7 +107,7 @@ def userAccount(request):
             plalist.save()
             return redirect('account')
     form = playlistForm
-    context = {'profile':profile,'form':form , 'playlists':playlists}
+    context = {'profile':profile,'form':form , 'playlists':playlists,'amountOfSub':amountOfSub}
     return render(request,'users/account.html',context)
 
 @login_required(login_url='login')

@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
     'users.apps.UsersConfig',
     'azbankgateways',
-    'payments.apps.PaymentsConfig',
+    #'payments.apps.PaymentsConfig',
 ]
 
 MIDDLEWARE = [
@@ -82,12 +82,8 @@ WSGI_APPLICATION = 'music.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'musicj',
-        'USER':'postgres',
-        'PASSWORD': 'itteam6969',
-        'HOST':'localhost',
-        'PORT':'5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
